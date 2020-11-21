@@ -47,5 +47,8 @@ public class Customer {
 		this.hasRenewed = hasRenewed;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Name: " + name + ", Age: " + age + ", Email Address: " + emailAddress + ", hasRenewed: " + hasRenewed;
+	}
 }
