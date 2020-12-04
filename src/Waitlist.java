@@ -105,9 +105,10 @@ public class Waitlist {
 	public String printQueue(){
 		sort();
 		if(!isEmpty()) {
-			String queueString = new String();
+			String queueString = "";
 			for(int i = 0; i < list.size(); i++) {
-				queueString += list.get(i).customer.toString() + "\n";
+				
+				queueString += (i + 1) + ". " + list.get(i).customer.getName() + ", " + list.get(i).customer.getEmailAddress() + "\n";
 			}
 			return queueString;
 		}else {
@@ -116,7 +117,6 @@ public class Waitlist {
 		
 	}
 	
-	//TODO
 	public boolean hasName(String name) {
 		for(int i = 0; i < list.size(); i++) {
 			if(list.get(i).name == name) {
@@ -145,7 +145,6 @@ public class Waitlist {
 		return false;
 	}
 	
-	//TODO
 	public class Node{
 		public Node(String name, Customer customer) {
 			this.name = name;
