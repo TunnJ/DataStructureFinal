@@ -106,12 +106,14 @@ public class HomePage {
 						//Creates a new customer and adds it to the waitlist
 						Customer customer = new Customer(name, age, email, renewed);
 						waitlist.insert(nameText.getText(), customer);
+						
 						//Create the label that will display the customers on the waitlist
 						listLabel.setText(waitlist.printQueue());
 						
 						//Sends a message when each customer is added
 						messageLabel.setText("Thank you for registering, you will receive an email when there is an apartment available to you!");
 						messageLabel.setFont(SWTResourceManager.getFont(".AppleSystemUIFont", 12, SWT.NORMAL));
+						
 						//Clears the input boxes
 						nameText.setText("");
 						ageText.setText("");

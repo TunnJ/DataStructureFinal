@@ -15,6 +15,7 @@ public class Customer {
 	 * Default constructor
 	 */
 	public Customer() {};
+	
 	/**
 	 * Non-default constructor
 	 * @param name
@@ -44,6 +45,7 @@ public class Customer {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	/**
 	 * This method returns an age
 	 * @return age
@@ -51,6 +53,7 @@ public class Customer {
 	public int getAge() {
 		return age;
 	}
+	
 	/**
 	 * This method changes an age
 	 * @param age
@@ -58,6 +61,7 @@ public class Customer {
 	public void setAge(int age) {
 		this.age = age;
 	}
+	
 	/**
 	 * This method returns an email address
 ]	 * @return emailAddress
@@ -65,6 +69,7 @@ public class Customer {
 	public String getEmailAddress() {
 		return emailAddress;
 	}
+
 	/**
 	 * This method changes an email address
 	 * @param emailAddress
@@ -72,6 +77,7 @@ public class Customer {
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
+	
 	/**
 	 * This method returns whether a person is renewing their lease or not
 	 * @return
@@ -79,6 +85,7 @@ public class Customer {
 	public boolean isHasRenewed() {
 		return hasRenewed;
 	}
+	
 	/**
 	 * This method changes whether a person is renewing their lease or not
 	 * @param hasRenewed
