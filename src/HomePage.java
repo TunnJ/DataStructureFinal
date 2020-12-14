@@ -17,6 +17,7 @@ public class HomePage {
 	private Text nameText;
 	private Text emailText;
 	private Waitlist waitlist = new Waitlist();
+	private Text searchText;
 
 	/**
 	 * Launch the application.
@@ -52,12 +53,12 @@ public class HomePage {
 	protected void createContents() {
 		shlCopperBeechTownhomes = new Shell();
 		shlCopperBeechTownhomes.setBackground(SWTResourceManager.getColor(255, 255, 255));
-		shlCopperBeechTownhomes.setSize(450, 300);
+		shlCopperBeechTownhomes.setSize(610, 300);
 		shlCopperBeechTownhomes.setText("Copper Beech ");
 		
 		Label lblNewLabel = new Label(shlCopperBeechTownhomes, SWT.NONE);
 		lblNewLabel.setFont(SWTResourceManager.getFont(".AppleSystemUIFont", 20, SWT.NORMAL));
-		lblNewLabel.setBounds(173, 50, 101, 35);
+		lblNewLabel.setBounds(211, 50, 101, 35);
 		lblNewLabel.setText("Waitlist");
 		
 		Label lblNewLabel_1 = new Label(shlCopperBeechTownhomes, SWT.NONE);
@@ -81,15 +82,15 @@ public class HomePage {
 		renewCheckbox.setBounds(10, 177, 120, 16);
 		renewCheckbox.setText("Renewing Lease");
 		
-		Label listLabel = new Label(shlCopperBeechTownhomes, SWT.BORDER);
-		listLabel.setBounds(155, 81, 270, 145);
+		Label listLabel = new Label(shlCopperBeechTownhomes, SWT.BORDER | SWT.WRAP);
+		listLabel.setBounds(144, 81, 219, 145);
 		if(waitlist.isEmpty()) {
 			listLabel.setText("Waitlist is empty, be the first to register!");
 		}
 		
 		Label messageLabel = new Label(shlCopperBeechTownhomes, SWT.WRAP | SWT.CENTER);
 		messageLabel.setFont(SWTResourceManager.getFont(".AppleSystemUIFont", 11, SWT.NORMAL));
-		messageLabel.setBounds(10, 232, 415, 30);
+		messageLabel.setBounds(52, 232, 501, 30);
 		
 		Button submitButton = new Button(shlCopperBeechTownhomes, SWT.NONE);
 		submitButton.addSelectionListener(new SelectionAdapter() {
@@ -105,7 +106,6 @@ public class HomePage {
 						//Creates a new customer and adds it to the waitlist
 						Customer customer = new Customer(name, age, email, renewed);
 						waitlist.insert(nameText.getText(), customer);
-						
 						//Create the label that will display the customers on the waitlist
 						listLabel.setText(waitlist.printQueue());
 						
@@ -146,7 +146,36 @@ public class HomePage {
 		Label welcomeLabel = new Label(shlCopperBeechTownhomes, SWT.WRAP);
 		welcomeLabel.setFont(SWTResourceManager.getFont(".AppleSystemUIFont", 14, SWT.NORMAL));
 		welcomeLabel.setAlignment(SWT.CENTER);
-		welcomeLabel.setBounds(10, 10, 430, 49);
+		welcomeLabel.setBounds(37, 10, 430, 49);
 		welcomeLabel.setText("Sorry, we don't have any available apartments right now. Please enter the information below and we will add you to the waitlist. ");
+		
+		Label searchLabel = new Label(shlCopperBeechTownhomes, SWT.NONE);
+		searchLabel.setText("More Information");
+		searchLabel.setFont(SWTResourceManager.getFont(".AppleSystemUIFont", 20, SWT.NORMAL));
+		searchLabel.setBounds(399, 50, 154, 35);
+		
+		Label lblNewLabel_2 = new Label(shlCopperBeechTownhomes, SWT.WRAP);
+		lblNewLabel_2.setBounds(381, 81, 184, 35);
+		lblNewLabel_2.setText("Enter the name of the customer that you want more information about");
+		
+		searchText = new Text(shlCopperBeechTownhomes, SWT.BORDER);
+		searchText.setBounds(390, 110, 145, 19);
+		
+		Label infoLabel = new Label(shlCopperBeechTownhomes, SWT.NONE);
+		infoLabel.setBounds(369, 135, 208, 79);
+		
+		Button btnNewButton = new Button(shlCopperBeechTownhomes, SWT.NONE);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(searchText.getText().trim().length() != 0) {
+					infoLabel.setText(waitlist.search(searchText.getText()));
+				}else {
+					messageLabel.setText("Please enter a name to be searched");
+				}
+			}
+		});
+		btnNewButton.setBounds(414, 210, 96, 27);
+		btnNewButton.setText("Search");
 	}
 }

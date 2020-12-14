@@ -36,19 +36,6 @@ public class Waitlist {
 	}
 	
 	/**
-	 * @return Returns element at head of queue
-	 * @throws StackEmptyException
-	 */
-	public Customer peek() throws QueueEmptyException {
-		if(isEmpty()) {
-			throw new QueueEmptyException();
-		}else {
-			sort();
-			return list.get(0).customer;
-		}
-	}
-	
-	/**
 	 * dequeue method
 	 * @return output(element that has highest priority)
 	 */
@@ -108,7 +95,7 @@ public class Waitlist {
 			String queueString = "";
 			for(int i = 0; i < list.size(); i++) {
 				
-				queueString += (i + 1) + ". " + list.get(i).customer.getName() + ", " + list.get(i).customer.getEmailAddress() + "\n";
+				queueString += list.get(i).customer.getName() + "\n";
 			}
 			return queueString;
 		}else {
@@ -117,25 +104,30 @@ public class Waitlist {
 		
 	}
 	
-	public boolean hasName(String name) {
-		for(int i = 0; i < list.size(); i++) {
-			if(list.get(i).name == name) {
-				return true;
-			}
+	/**
+	 * This method searches for a customer by name
+	 * @param name
+	 * @return String
+	 */
+	public String search(String name) {
+		sort();
+		if(!isEmpty()) {
+			for(int i = 0; i < list.size(); i++) {
+				if(list.get(i).customer.getName().equals(name)) {
+					return list.get(i).customer.toString();
+				}
+			} 
+				return "Customer not found";
+		}else {
+			return "Waitlist is empty";
 		}
-		return false;
 	}
 	
-	public Customer search(String name) {
-		for(int i = 0; i < list.size(); i++) {
-			if(list.get(i).name == name) {
-				return list.get(i).customer;
-			}
-		}
-		return null;
-	}
-	
-	//Check to see if the customer object already exists because two people can have the same name
+	/**
+	 * Check to see if the customer object already exists 
+	 * @param customer
+	 * @return boolean
+	 */
 	boolean find(Customer customer) {
 		for(int i = 0; i < list.size(); i++) {
 			if(list.get(i).customer == customer) {
@@ -145,6 +137,11 @@ public class Waitlist {
 		return false;
 	}
 	
+	/**
+	 * This class represents the nodes that will be inserted into the list
+	 * @author Jacob Tunning
+	 * @version 1
+	 */
 	public class Node{
 		public Node(String name, Customer customer) {
 			this.name = name;
